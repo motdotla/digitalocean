@@ -53,5 +53,10 @@ module Digitalocean
       response = Digitalocean.request.get "droplets/new", attrs
       RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true) 
     end
+
+    def self.destroy(droplet_id=nil)
+      response = Digitalocean.request.get "droplets/#{droplet_id}/destroy"
+      RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true)
+    end
   end
 end

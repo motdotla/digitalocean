@@ -46,6 +46,7 @@ Then in your application initialize the gem:
     $ Digitalocean::Droplet.power_off(id)
     $ Digitalocean::Droplet.power_on(id)
     $ Digitalocean::Droplet.snapshot(id)
+    $ Digitalocean::Droplet.destroy(id)
     $ Digitalocean::Image.all
     $ Digitalocean::Region.all
     $ Digitalocean::Size.all
