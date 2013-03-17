@@ -8,7 +8,7 @@ module Digitalocean
       RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true)
     end
     def self.find(id)
-      self.all.regions.detect{|size| region.id == id}
+      self.all.regions.detect{|region| region.id == id}
     end
   end
 end
