@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Digitalocean by signatureio</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Digitalocean</h1>
+        <p>Ruby bindings for the Digital Ocean API.</p>
+
+        <p class="view"><a href="https://github.com/signatureio/digitalocean">View the Project on GitHub <small>signatureio/digitalocean</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/signatureio/digitalocean/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/signatureio/digitalocean/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/signatureio/digitalocean">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="digitalocean-ruby-bindings" class="anchor" href="#digitalocean-ruby-bindings"><span class="octicon octicon-link"></span></a>Digitalocean Ruby Bindings</h1>
+
+<p>This gem is a wrapper for <a href="https://www.digitalocean.com">DigitalOcean.com</a>'s API.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'digitalocean'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install digitalocean
+</code></pre>
+
+<p>Then in your application initialize the gem:</p>
+
+<pre><code>$ Digitalocean.client_id  = "your_client_id"
+$ Digitalocean.api_key    = "your_api_key"
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="list-droplets" class="anchor" href="#list-droplets"><span class="octicon octicon-link"></span></a>List Droplets</h3>
+
+<pre><code>$ Digitalocean::Droplet.all
+</code></pre>
+
+<h3>
+<a name="retrieve-droplet" class="anchor" href="#retrieve-droplet"><span class="octicon octicon-link"></span></a>Retrieve Droplet</h3>
+
+<pre><code>$ Digitalocean::Droplet.retrieve("id_of_droplet")
+</code></pre>
+
+<h3>
+<a name="create-droplet" class="anchor" href="#create-droplet"><span class="octicon octicon-link"></span></a>Create Droplet</h3>
+
+<pre><code>$ Digitalocean::Droplet.create({:name =&gt; droplet_name, :size_id =&gt; size_id, :image_id =&gt; image_id, :region_id =&gt; region_id)
+</code></pre>
+
+<h2>
+<a name="available-commands" class="anchor" href="#available-commands"><span class="octicon octicon-link"></span></a>Available Commands</h2>
+
+<pre><code>$ Digitalocean::Droplet.all
+$ Digitalocean::Droplet.retrieve(id)
+$ Digitalocean::Droplet.create({})
+$ Digitalocean::Droplet.reboot(id)
+$ Digitalocean::Droplet.power_cycle(id)
+$ Digitalocean::Droplet.shut_down(id)
+$ Digitalocean::Droplet.power_off(id)
+$ Digitalocean::Droplet.power_on(id)
+$ Digitalocean::Droplet.snapshot(id)
+$ Digitalocean::Droplet.destroy(id)
+$ Digitalocean::Image.all
+$ Digitalocean::Region.all
+$ Digitalocean::Size.all
+$ Digitalocean::SshKey.all
+$ Digitalocean::SshKey.retrieve(id)
+$ Digitalocean::SshKey.create({})
+</code></pre>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol><h2>
+<a name="running-specs" class="anchor" href="#running-specs"><span class="octicon octicon-link"></span></a>Running Specs</h2>
+
+<ol>
+<li>cp .env-example .env</li>
+<li>Set your credentials in the .env file</li>
+<li>bundle exec foreman run bundle exec rspec spec/digitalocean/*</li>
+</ol>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/signatureio">signatureio</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
