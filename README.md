@@ -47,9 +47,16 @@ Then in your application initialize the gem:
     $ Digitalocean::Droplet.power_on(id)
     $ Digitalocean::Droplet.snapshot(id)
     $ Digitalocean::Droplet.destroy(id)
+
     $ Digitalocean::Image.all
+    $ Digitalocean::Image.find(id)
+    $ Digitalocean::Image.destroy(id)
+    $ Digitalocean::Image.transfer(id, region_id)
+
     $ Digitalocean::Region.all
+
     $ Digitalocean::Size.all
+
     $ Digitalocean::SshKey.all
     $ Digitalocean::SshKey.retrieve(id)
     $ Digitalocean::SshKey.create({})
