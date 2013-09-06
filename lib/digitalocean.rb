@@ -7,6 +7,9 @@ require "digitalocean/image"
 require "digitalocean/region"
 require "digitalocean/size"
 require "digitalocean/ssh_key"
+require "digitalocean/domain"
+require "digitalocean/record"
+
 
 module Digitalocean
   extend self
