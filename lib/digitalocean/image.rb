@@ -11,5 +11,13 @@ module Digitalocean
       response = Digitalocean.request.get "images/#{id}"
       RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true).image
     end
+    def self.destroy(id)
+      response = Digitalocean.request.get "images/#{id}/destroy"
+      RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true).image
+    end
+    def self.transfer(id, region_id)
+      response = Digitalocean.request.get "images/#{id}/transfer", { region_id: region_id }
+      RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true).image
+    end
   end
 end

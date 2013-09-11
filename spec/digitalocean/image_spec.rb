@@ -20,5 +20,20 @@ describe Digitalocean::Image do
         end
       end
     end
+
+    describe ".find" do
+      before do
+        image_id = @response.images.first.id
+        @response2 = subject.retrieve(image_id)
+      end
+
+      context "default" do
+        it do
+          @response.status.should eq ok
+        end
+      end
+    end
+
+
   end
 end
