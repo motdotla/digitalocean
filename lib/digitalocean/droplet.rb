@@ -13,6 +13,11 @@ module Digitalocean
       RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true)
     end
 
+    def self.rename(droplet_id, name)
+      response = Digitalocean.request.get "droplets/#{droplet_id}/rename", :name=>name
+      RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true)
+    end
+
     def self.reboot(droplet_id=nil)
       response = Digitalocean.request.get "droplets/#{droplet_id}/reboot"
       RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true)
