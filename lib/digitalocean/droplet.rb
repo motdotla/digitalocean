@@ -52,7 +52,8 @@ module Digitalocean
     #   :name =>        droplet_name, 
     #   :size_id =>     size_id, 
     #   :image_id =>    image_id,
-    #   :region_id =>   region_id
+    #   :region_id =>   region_id,
+    #   :ssh_key_ids => ssh_key_ids
     # }
     def self.create(attrs)
       response = Digitalocean.request.get "droplets/new", attrs
