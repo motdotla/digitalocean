@@ -14,7 +14,7 @@ module Digitalocean
     end
 
     def self.create(attrs)
-      response = Digitalocean.request.get "ssh_keys/new"
+      response = Digitalocean.request.get "ssh_keys/new", attrs
       RecursiveOpenStruct.new(response.body, :recurse_over_arrays => true)
     end
   end
