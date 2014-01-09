@@ -6,8 +6,8 @@ require 'digitalocean/version'
 Gem::Specification.new do |gem|
   gem.name          = "digitalocean"
   gem.version       = Digitalocean::VERSION
-  gem.authors       = ["scottmotte"]
-  gem.email         = ["scott@scottmotte.com"]
+  gem.authors       = ["scottmotte", "sergiocampama"]
+  gem.email         = ["scott@scottmotte.com", "sergiocampama@gmail.com"]
   gem.description   = %q{Ruby bindings for the Digital Ocean API.}
   gem.summary       = %q{Ruby bindings for the Digital Ocean API.}
   gem.homepage      = "http://github.com/scottmotte/digitalocean"

@@ -66,7 +66,7 @@ Then in your application initialize the gem:
     $ Digitalocean::Domain.create(domain_name, ip_address)
     $ Digitalocean::Domain.destroy(id)
 
-    $ Digitalocean::Record.all
+    $ Digitalocean::Record.all(domain_id)
     $ Digitalocean::Record.find(domain_id, record_id)
     $ Digitalocean::Record.create(domain_id, record_type, data, [name, priority, port, weight])
     $ Digitalocean::Record.edit(domain_id, record_id, {})
