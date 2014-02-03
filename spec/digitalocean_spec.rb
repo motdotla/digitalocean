@@ -10,8 +10,8 @@ describe Digitalocean do
     end
 
     it { subject.api_endpoint.should eq "https://api.digitalocean.com" }
-    it { subject.client_id.should eq "missing_client_id" }
-    it { subject.api_key.should eq "missing_api_key" }
+    it { subject.client_id.should eq "[your_client_id]" }
+    it { subject.api_key.should eq "[your_api_key]" }
   end
 
   describe "setting values" do

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Digitalocean::Domain do
-  let(:ok)        { "OK" }
   let(:subject)   { Digitalocean::Domain }
 
   context "correct api key" do
@@ -9,61 +8,59 @@ describe Digitalocean::Domain do
       set_client_id_and_api_key!
     end
 
-    describe ".all" do
+    describe "._all" do
       before do
-        @response = subject.all
+        @url = subject._all
       end
 
       context "default" do
         it do
-          @response.status.should eq ok
+          @url.should eq "https://api.digitalocean.com/domains?client_id=[your_client_id]&api_key=[your_api_key]" 
         end
       end
+    end
 
-      describe ".find" do
-        before do
-          domain_id = @response.domains.first.id
-          @response2 = subject.find(domain_id)
-        end
+    describe "._find" do
+      let(:domain_id) { "[domain_id]" }
 
-        context "default" do
-          it do
-            @response2.status.should eq ok
-          end
-        end
+      before do
+        @url = subject._find(domain_id)
       end
 
-      describe ".create" do
-        let(:domain_name) { ["digitalocean_spec_", SecureRandom.hex(15), ".com"].join }
-
-        before do
-          domain = @response.domains.first
-          @response_create = subject.create(domain_name, domain.ip_address)
-        end
-
-        context "default" do
-          it do
-            @response_create.status.should eq ok
-          end
+      context "default" do
+        it do
+          @url.should eq "https://api.digitalocean.com/domains/[domain_id]?client_id=[your_client_id]&api_key=[your_api_key]" 
         end
       end
+    end
 
-      describe ".destroy" do
-        let(:domain_name) { ["digitalocean_spec_", SecureRandom.hex(15), ".com"].join }
+    describe "._create" do
+      let(:domain_name) { "[domain]" }
+      let(:ip_address)  { "[ip_address]" }
 
-        before do
-          droplet = @response.droplets.first
-          @response_create = subject.create(domain_name, droplet.ip_address)
-          @response_destroy = subject.destroy(@response_create.id)
-        end
-
-        context "default" do
-          it do
-            @response_destroy.status.should eq ok
-          end
-        end
+      before do
+        @url = subject._create(domain_name, ip_address)
       end
 
+      context "default" do
+        it do
+          @url.should eq "https://api.digitalocean.com/domains/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[domain]&ip_address=[ip_address]"
+        end
+      end
+    end
+
+    describe "._destroy" do
+      let(:domain_id) { "[domain_id]" }
+
+      before do
+        @url = subject._destroy(domain_id)
+      end
+
+      context "default" do
+        it do
+          @url.should eq "https://api.digitalocean.com/domains/[domain_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]"
+        end
+      end
     end
   end
 end

@@ -31,7 +31,7 @@ module Digitalocean
 
   def client_id
     return @client_id if @client_id
-    "missing_client_id"
+    "[your_client_id]"
   end
 
   def api_key=(api_key)
@@ -43,7 +43,7 @@ module Digitalocean
 
   def api_key
     return @api_key if @api_key
-    "missing_api_key"
+    "[your_api_key]"
   end
 
   def api_endpoint
@@ -52,6 +52,21 @@ module Digitalocean
 
   def credential_attrs
     {:client_id => Digitalocean.client_id, :api_key => Digitalocean.api_key}
+  end
+
+  def build_url(path, attrs={})
+    array = [
+      api_endpoint,
+      path,
+      "?client_id=#{client_id}",
+      "&api_key=#{api_key}"
+    ]
+
+    attrs.each do |key, value|
+      array << "&#{key}=#{value}"
+    end
+
+    array.join("")
   end
 
   private
