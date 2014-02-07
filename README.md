@@ -6,20 +6,28 @@ This gem is a wrapper for [DigitalOcean.com](https://www.digitalocean.com)'s API
 
 Add this line to your application's Gemfile:
 
-    gem 'digitalocean'
+```
+gem 'digitalocean'
+```
 
 And then execute:
 
-    $ bundle
+```
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install digitalocean
+```
+gem install digitalocean
+```
 
 Then in your application initialize the gem:
 
-    $ Digitalocean.client_id  = "your_client_id"
-    $ Digitalocean.api_key    = "your_api_key"
+```ruby
+Digitalocean.client_id  = "your_client_id"
+Digitalocean.api_key    = "your_api_key"
+```
 
 ## Usage
 
