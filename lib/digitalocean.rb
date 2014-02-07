@@ -116,10 +116,6 @@ module Digitalocean
     "https://api.digitalocean.com"
   end
 
-  def credential_attrs
-    {:client_id => Digitalocean.client_id, :api_key => Digitalocean.api_key}
-  end
-
   def request_and_respond(url)
     resp = Digitalocean.request.get url
     RecursiveOpenStruct.new(resp.body, :recurse_over_arrays => true)
@@ -185,9 +181,7 @@ module Digitalocean
   def setup_request!
     options = {
       :headers  =>  {'Accept' => "application/json"},
-      :ssl      =>  {:verify => false},
-      :url      =>  Digitalocean.api_endpoint,
-      :params   =>  Digitalocean.credential_attrs 
+      :ssl      =>  {:verify => false}
     }
 
     Digitalocean.request = ::Faraday::Connection.new(options) do |builder|

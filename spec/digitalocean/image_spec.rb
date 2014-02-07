@@ -3,69 +3,63 @@ require 'spec_helper'
 describe Digitalocean::Image do
   let(:subject)   { Digitalocean::Image }
 
-  context "correct api key" do
+  describe "._all" do
     before do
-      set_client_id_and_api_key!
+      @url = subject._all
     end
 
-    describe "._all" do
-      before do
-        @url = subject._all
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/images/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 
-      it do
-        @url.should eq "https://api.digitalocean.com/images/?client_id=client_id_required&api_key=api_key_required"
-      end
+  describe "._all with optional parameters" do
+    let(:args) { { filter: "my_images" } }
+
+    before do
+      @url = subject._all(args)
     end
 
-    describe "._all with optional parameters" do
-      let(:args) { { filter: "my_images" } }
+    it do
+      @url.should eq "https://api.digitalocean.com/images/?client_id=client_id_required&api_key=api_key_required&filter=my_images"
+    end
+  end
 
-      before do
-        @url = subject._all(args)
-      end
+  describe "._find" do
+    let(:id) { "1234" }
 
-      it do
-        @url.should eq "https://api.digitalocean.com/images/?client_id=client_id_required&api_key=api_key_required&filter=my_images"
-      end
+    before do
+      @url = subject._find(id)
     end
 
-    describe "._find" do
-      let(:id) { "1234" }
+    it do
+      @url.should eq "https://api.digitalocean.com/images/#{id}/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 
-      before do
-        @url = subject._find(id)
-      end
+  describe "._destroy" do
+    let(:id) { "1234" }
 
-      it do
-        @url.should eq "https://api.digitalocean.com/images/#{id}/?client_id=client_id_required&api_key=api_key_required"
-      end
+    before do
+      @url = subject._destroy(id)
     end
 
-    describe "._destroy" do
-      let(:id) { "1234" }
+    it do
+      @url.should eq "https://api.digitalocean.com/images/#{id}/destroy/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 
-      before do
-        @url = subject._destroy(id)
-      end
+  describe "._transfer" do
+    let(:id) { "1234" }
+    let(:region_id) { "44" }
+    let(:args) { {region_id: region_id } }
 
-      it do
-        @url.should eq "https://api.digitalocean.com/images/#{id}/destroy/?client_id=client_id_required&api_key=api_key_required"
-      end
+    before do
+      @url = subject._transfer(id, args)
     end
 
-    describe "._transfer" do
-      let(:id) { "1234" }
-      let(:region_id) { "44" }
-      let(:args) { {region_id: region_id } }
-
-      before do
-        @url = subject._transfer(id, args)
-      end
-
-      it do
-        @url.should eq "https://api.digitalocean.com/images/#{id}/transfer/?client_id=client_id_required&api_key=api_key_required&region_id=44"
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/images/#{id}/transfer/?client_id=client_id_required&api_key=api_key_required&region_id=44"
     end
   end
 end
