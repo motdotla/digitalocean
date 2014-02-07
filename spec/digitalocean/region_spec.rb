@@ -13,10 +13,8 @@ describe Digitalocean::Region do
         @url = subject._all
       end
 
-      context "default" do
-        it do
-          @url.should eq "https://api.digitalocean.com/regions/?client_id=client_id_required&api_key=api_key_required"
-        end
+      it do
+        @url.should eq "https://api.digitalocean.com/regions/?client_id=client_id_required&api_key=api_key_required"
       end
     end
   end

@@ -13,10 +13,8 @@ describe Digitalocean::SshKey do
         @url = subject._all
       end
 
-      context "default" do
-        it do
-          @url.should eq "https://api.digitalocean.com/ssh_keys/?client_id=client_id_required&api_key=api_key_required" 
-        end
+      it do
+        @url.should eq "https://api.digitalocean.com/ssh_keys/?client_id=client_id_required&api_key=api_key_required" 
       end
     end
 
@@ -26,10 +24,8 @@ describe Digitalocean::SshKey do
         @url = subject._find(ssh_key_id)
       end
 
-      context "default" do
-        it do
-          @url.should eq "https://api.digitalocean.com/ssh_keys/test_key/?client_id=client_id_required&api_key=api_key_required" 
-        end
+      it do
+        @url.should eq "https://api.digitalocean.com/ssh_keys/test_key/?client_id=client_id_required&api_key=api_key_required" 
       end
     end
 
@@ -42,10 +38,8 @@ describe Digitalocean::SshKey do
         @url = subject._create(attrs)
       end
 
-      context "default" do
-        it do
-          @url.should eq "https://api.digitalocean.com/ssh_keys/new/?name=#{name}&ssh_pub_key=#{ssh_pub_key}&client_id=client_id_required&api_key=api_key_required" 
-        end
+      it do
+        @url.should eq "https://api.digitalocean.com/ssh_keys/new/?name=#{name}&ssh_pub_key=#{ssh_pub_key}&client_id=client_id_required&api_key=api_key_required" 
       end
     end
   end

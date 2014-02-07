@@ -3,15 +3,11 @@ require "faraday_middleware"
 require "recursive-open-struct"
 require "digitalocean/version"
 require "digitalocean/droplet"
-require "digitalocean/image"
-require "digitalocean/size"
 require "digitalocean/record"
 
 module Digitalocean
   extend self
 
-  CLIENT_ID_GSUB  = "client_id=[your_client_id]"
-  API_KEY_GSUB    = "api_key=[your_api_key]"
   DEFINITIONS     = {
     "Domain" => {
       "all"       => "https://api.digitalocean.com/domains?client_id=[your_client_id]&api_key=[your_api_key]",
@@ -19,8 +15,17 @@ module Digitalocean
       "create"    => "https://api.digitalocean.com/domains/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[domain]&ip_address=[ip_address]", 
       "destroy"   => "https://api.digitalocean.com/domains/[domain_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]" 
     },
+    "Image"  => {
+      "all"       => "https://api.digitalocean.com/images/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "find"      => "https://api.digitalocean.com/images/[image_id]/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "destroy"      => "https://api.digitalocean.com/images/[image_id]/destroy/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "transfer"      => "https://api.digitalocean.com/images/[image_id]/transfer/?client_id=[your_client_id]&api_key=[your_api_key]&region_id=[region_id]" 
+    },
     "Region" => {
       "all"       => "https://api.digitalocean.com/regions/?client_id=[your_client_id]&api_key=[your_api_key]"
+    },
+    "Size"   => {
+      "all"       => "https://api.digitalocean.com/sizes/?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "SshKey" => {
       "all"       => "https://api.digitalocean.com/ssh_keys/?client_id=[your_client_id]&api_key=[your_api_key]",
@@ -33,7 +38,8 @@ module Digitalocean
     resource_name = resource[0]
 
     resource_class = Class.new(Object) do
-      singleton = class << self; self end # http://stackoverflow.com/questions/3026943/define-method-for-instance-of-class
+      # http://stackoverflow.com/questions/3026943/define-method-for-instance-of-class
+      singleton = class << self; self end
 
       DEFINITIONS[resource_name].each do |method_name, url|
         parts         = url.split("?")
@@ -42,7 +48,6 @@ module Digitalocean
 
         singleton.send :define_method, "_#{method_name}" do |*args|
           pre_query   = Digitalocean.process_standard_args_from_part(pre_query, args)
-          #post_query  = Digitalocean.inject_client_id_and_api_key(post_query)
           post_query  = Digitalocean.process_hash_args_from_part(post_query, args)
 
           [pre_query, post_query].join("?")
@@ -119,10 +124,11 @@ module Digitalocean
     # Begin by taking care of the client_id and api_key
     client_id_index = parts.index "client_id="
     client_id_index = parts.index "&client_id=" if !client_id_index
-    parts[client_id_index+1] = client_id
+    parts[client_id_index+1] = client_id if client_id_index
+
     api_key_index = parts.index "api_key="
     api_key_index = parts.index "&api_key=" if !api_key_index
-    parts[api_key_index+1] = api_key
+    parts[api_key_index+1] = api_key if api_key_index
 
     parts
   end
@@ -131,11 +137,9 @@ module Digitalocean
     parts = part.split(/\[|\]/)
     parts = process_client_id_and_api_key(parts)
 
-    if parts.length > 1
-
-      hash = args[-1]
-
-      if hash.is_a?(Hash)
+    hash = args[-1]
+    if hash.is_a?(Hash)
+      if parts.length > 1
         hash.each do |key, value|
           query_setter    = "#{key}="
           query_arg_index = parts.index query_setter 
@@ -143,18 +147,19 @@ module Digitalocean
 
           if query_arg_index != nil
             parts[query_arg_index+1] = value
+            hash.delete(key) # cleanup
           end
         end
+      end
+
+      # append any additional hash arguments (optional params)
+      hash.each do |key, value|
+        appendable_param = "&#{key}=#{value}"
+        parts.push(appendable_param)
       end
     end
 
     parts.join("")
-  end
-
-  def inject_client_id_and_api_key(post_query)
-    post_query
-      .gsub(CLIENT_ID_GSUB, "client_id=#{client_id}")
-      .gsub(API_KEY_GSUB, "api_key=#{api_key}")
   end
 
   private
