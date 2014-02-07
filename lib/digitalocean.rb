@@ -7,15 +7,49 @@ require "digitalocean/image"
 require "digitalocean/region"
 require "digitalocean/size"
 require "digitalocean/ssh_key"
-require "digitalocean/domain"
 require "digitalocean/record"
-
 
 module Digitalocean
   extend self
 
   CLIENT_ID_GSUB  = "client_id=[your_client_id]"
   API_KEY_GSUB    = "api_key=[your_api_key]"
+  DEFINITIONS     = {
+    "Domain" => {
+      "all"       => "https://api.digitalocean.com/domains?client_id=[your_client_id]&api_key=[your_api_key]",
+      "find"      => "https://api.digitalocean.com/domains/[domain_id]?client_id=[your_client_id]&api_key=[your_api_key]",
+      "create"    => "https://api.digitalocean.com/domains/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[domain]&ip_address=[ip_address]", 
+      "destroy"   => "https://api.digitalocean.com/domains/[domain_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]" 
+    }
+  }
+
+  DEFINITIONS.each do |resource|
+    resource_name = resource[0]
+
+    resource_class = Class.new(Object) do
+      singleton = class << self; self end # http://stackoverflow.com/questions/3026943/define-method-for-instance-of-class
+
+      DEFINITIONS[resource_name].each do |method_name, url|
+        parts         = url.split("?")
+        pre_query     = parts[0]
+        post_query    = parts[1]
+
+        singleton.send :define_method, "_#{method_name}" do |*args|
+          pre_query   = Digitalocean.process_args_from_part(pre_query, args)
+          post_query  = Digitalocean.inject_client_id_and_api_key(post_query)
+          post_query  = Digitalocean.process_args_from_part(post_query, args)
+
+          [pre_query, post_query].join("?")
+        end
+
+        singleton.send :define_method, method_name do |*args|
+          request_and_respond "_#{method_name}", *args
+        end
+      end
+    end
+
+    Digitalocean.const_set(resource_name, resource_class) 
+  end
 
   def request=(request)
     @request = request
@@ -56,8 +90,6 @@ module Digitalocean
   def credential_attrs
     {:client_id => Digitalocean.client_id, :api_key => Digitalocean.api_key}
   end
-
-
 
   def request_and_respond(url)
     resp = Digitalocean.request.get url
