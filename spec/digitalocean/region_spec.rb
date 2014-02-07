@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Digitalocean::Region do
-  let(:ok)        { "OK" }
   let(:subject)   { Digitalocean::Region }
 
   context "correct api key" do
@@ -9,14 +8,14 @@ describe Digitalocean::Region do
       set_client_id_and_api_key!
     end
 
-    describe ".all" do
+    describe "._all" do
       before do
-        @response = subject.all
+        @url = subject._all
       end
 
       context "default" do
         it do
-          @response.status.should eq ok
+          @url.should eq "https://api.digitalocean.com/regions/?client_id=client_id_required&api_key=api_key_required"
         end
       end
     end

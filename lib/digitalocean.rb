@@ -4,9 +4,7 @@ require "recursive-open-struct"
 require "digitalocean/version"
 require "digitalocean/droplet"
 require "digitalocean/image"
-require "digitalocean/region"
 require "digitalocean/size"
-require "digitalocean/ssh_key"
 require "digitalocean/record"
 
 module Digitalocean
@@ -20,6 +18,14 @@ module Digitalocean
       "find"      => "https://api.digitalocean.com/domains/[domain_id]?client_id=[your_client_id]&api_key=[your_api_key]",
       "create"    => "https://api.digitalocean.com/domains/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[domain]&ip_address=[ip_address]", 
       "destroy"   => "https://api.digitalocean.com/domains/[domain_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]" 
+    },
+    "Region" => {
+      "all"       => "https://api.digitalocean.com/regions/?client_id=[your_client_id]&api_key=[your_api_key]"
+    },
+    "SshKey" => {
+      "all"       => "https://api.digitalocean.com/ssh_keys/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "find"      => "https://api.digitalocean.com/ssh_keys/[ssh_key_id]/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "create"    => "https://api.digitalocean.com/ssh_keys/new/?name=[ssh_key_name]&ssh_pub_key=[ssh_public_key]&client_id=[your_client_id]&api_key=[your_api_key]"
     }
   }
 
@@ -35,9 +41,9 @@ module Digitalocean
         post_query    = parts[1]
 
         singleton.send :define_method, "_#{method_name}" do |*args|
-          pre_query   = Digitalocean.process_args_from_part(pre_query, args)
-          post_query  = Digitalocean.inject_client_id_and_api_key(post_query)
-          post_query  = Digitalocean.process_args_from_part(post_query, args)
+          pre_query   = Digitalocean.process_standard_args_from_part(pre_query, args)
+          #post_query  = Digitalocean.inject_client_id_and_api_key(post_query)
+          post_query  = Digitalocean.process_hash_args_from_part(post_query, args)
 
           [pre_query, post_query].join("?")
         end
@@ -96,13 +102,49 @@ module Digitalocean
     RecursiveOpenStruct.new(resp.body, :recurse_over_arrays => true)
   end
 
-  def process_args_from_part(part, args)
+  def process_standard_args_from_part(part, args)
     parts = part.split(/\[|\]/)
 
     if parts.length > 1
       parts.each_with_index do |v, i|
         is_every_other = (i%2 == 1)
         parts[i] = args.shift if is_every_other
+      end
+    end
+
+    parts.join("")
+  end
+
+  def process_client_id_and_api_key(parts)
+    # Begin by taking care of the client_id and api_key
+    client_id_index = parts.index "client_id="
+    client_id_index = parts.index "&client_id=" if !client_id_index
+    parts[client_id_index+1] = client_id
+    api_key_index = parts.index "api_key="
+    api_key_index = parts.index "&api_key=" if !api_key_index
+    parts[api_key_index+1] = api_key
+
+    parts
+  end
+
+  def process_hash_args_from_part(part, args)
+    parts = part.split(/\[|\]/)
+    parts = process_client_id_and_api_key(parts)
+
+    if parts.length > 1
+
+      hash = args[-1]
+
+      if hash.is_a?(Hash)
+        hash.each do |key, value|
+          query_setter    = "#{key}="
+          query_arg_index = parts.index query_setter 
+          query_arg_index = parts.index "&#{query_setter}" if !query_arg_index # handle case of ampersand
+
+          if query_arg_index != nil
+            parts[query_arg_index+1] = value
+          end
+        end
       end
     end
 

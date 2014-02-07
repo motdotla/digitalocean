@@ -35,11 +35,12 @@ describe Digitalocean::Domain do
     end
 
     describe "._create" do
-      let(:domain_name) { "test_domain" }
+      let(:name)        { "test_domain" }
       let(:ip_address)  { "test_ip_address" }
+      let(:args)        { {name: name, ip_address: ip_address } }
 
       before do
-        @url = subject._create(domain_name, ip_address)
+        @url = subject._create(args)
       end
 
       context "default" do
