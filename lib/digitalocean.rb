@@ -14,6 +14,9 @@ require "digitalocean/record"
 module Digitalocean
   extend self
 
+  CLIENT_ID_GSUB  = "client_id=[your_client_id]"
+  API_KEY_GSUB    = "api_key=[your_api_key]"
+
   def request=(request)
     @request = request
   end
@@ -31,7 +34,7 @@ module Digitalocean
 
   def client_id
     return @client_id if @client_id
-    "[your_client_id]"
+    "client_id_required"
   end
 
   def api_key=(api_key)
@@ -43,7 +46,7 @@ module Digitalocean
 
   def api_key
     return @api_key if @api_key
-    "[your_api_key]"
+    "api_key_required"
   end
 
   def api_endpoint
@@ -54,19 +57,30 @@ module Digitalocean
     {:client_id => Digitalocean.client_id, :api_key => Digitalocean.api_key}
   end
 
-  def build_url(path, attrs={})
-    array = [
-      api_endpoint,
-      path,
-      "?client_id=#{client_id}",
-      "&api_key=#{api_key}"
-    ]
 
-    attrs.each do |key, value|
-      array << "&#{key}=#{value}"
+
+  def request_and_respond(url)
+    resp = Digitalocean.request.get url
+    RecursiveOpenStruct.new(resp.body, :recurse_over_arrays => true)
+  end
+
+  def process_args_from_part(part, args)
+    parts = part.split(/\[|\]/)
+
+    if parts.length > 1
+      parts.each_with_index do |v, i|
+        is_every_other = (i%2 == 1)
+        parts[i] = args.shift if is_every_other
+      end
     end
 
-    array.join("")
+    parts.join("")
+  end
+
+  def inject_client_id_and_api_key(post_query)
+    post_query
+      .gsub(CLIENT_ID_GSUB, "client_id=#{client_id}")
+      .gsub(API_KEY_GSUB, "api_key=#{api_key}")
   end
 
   private
