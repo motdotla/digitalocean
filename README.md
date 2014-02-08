@@ -87,6 +87,8 @@ Digitalocean::Size.all
 Digitalocean::SshKey.all
 Digitalocean::SshKey.find(id)
 Digitalocean::SshKey.create({name: name, ssh_pub_key: ssh_pub_key})
+
+Digitalocean::Event.find(id)
 ```
 
 There's also an [digitalocean-rubygem-example](https://github.com/scottmotte/digitalocean-rubygem-example) if you find you need more context.

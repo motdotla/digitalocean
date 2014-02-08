@@ -49,6 +49,9 @@ module Digitalocean
       "all"       => "https://api.digitalocean.com/ssh_keys/?client_id=[your_client_id]&api_key=[your_api_key]",
       "find"      => "https://api.digitalocean.com/ssh_keys/[ssh_key_id]/?client_id=[your_client_id]&api_key=[your_api_key]",
       "create"    => "https://api.digitalocean.com/ssh_keys/new/?name=[ssh_key_name]&ssh_pub_key=[ssh_public_key]&client_id=[your_client_id]&api_key=[your_api_key]"
+    },
+    "Event"   => {
+      "find"      => "https://api.digitalocean.com/events/[event_id]/?client_id=[your_client_id]&api_key=[your_api_key]"
     }
   }
 
