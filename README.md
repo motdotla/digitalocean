@@ -104,3 +104,12 @@ When adding methods, add to the list of DEFINITIONS in `lib/digitalocean.rb`. Ad
 ```
 bundle exec rspec spec/*
 ```
+
+## Publish to RubyGems.org
+
+You first need to request access from [scottmotte](http://github.com/scottmotte).
+
+```
+gem build digitalocean.gemspec
+gem push digitalocean-1.0.0.rc.1.gem
+```
