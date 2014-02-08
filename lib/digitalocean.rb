@@ -72,7 +72,7 @@ module Digitalocean
         end
 
         singleton.send :define_method, method_name do |*args|
-          request_and_respond "_#{method_name}", *args
+          Digitalocean.request_and_respond send("_#{method_name}", *args)
         end
       end
     end
@@ -118,7 +118,9 @@ module Digitalocean
 
   def request_and_respond(url)
     resp = Digitalocean.request.get url
-    RecursiveOpenStruct.new(resp.body, :recurse_over_arrays => true)
+    hash = RecursiveOpenStruct.new(resp.body, :recurse_over_arrays => true)
+
+    hash
   end
 
   def process_standard_args_from_part(part, args)
