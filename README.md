@@ -89,6 +89,8 @@ Digitalocean::SshKey.find(id)
 Digitalocean::SshKey.create({name: name, ssh_pub_key: ssh_pub_key})
 ```
 
+There's also an [digitalocean-rubygem-example](https://github.com/scottmotte/digitalocean-rubygem-example) if you find you need more context.
+
 ## Contributing
 
 1. Fork it
