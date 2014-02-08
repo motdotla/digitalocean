@@ -2,6 +2,16 @@
 
 This gem is a wrapper for [DigitalOcean.com](https://www.digitalocean.com)'s API.
 
+[![BuildStatus](https://travis-ci.org/scottmotte/digitalocean.png?branch=master)](https://travis-ci.org/scottmotte/digitalocean)
+[![Gem Version](https://badge.fury.io/rb/digitalocean.png)](http://badge.fury.io/rb/digitalocean)
+
+```ruby
+Digitalocean.client_id  = "your_client_id"
+Digitalocean.api_key    = "your_api_key"
+droplets = Digitalocean::Droplet.all
+puts droplets.inspect
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
