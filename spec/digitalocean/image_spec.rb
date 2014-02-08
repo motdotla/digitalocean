@@ -1,39 +1,65 @@
 require 'spec_helper'
 
 describe Digitalocean::Image do
-  let(:ok)        { "OK" }
   let(:subject)   { Digitalocean::Image }
 
-  context "correct api key" do
+  describe "._all" do
     before do
-      set_client_id_and_api_key!
+      @url = subject._all
     end
 
-    describe ".all" do
-      before do
-        @response = subject.all
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/images/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 
-      context "default" do
-        it do
-          @response.status.should eq ok
-        end
-      end
+  describe "._all with optional parameters" do
+    let(:args) { { filter: "my_images" } }
+
+    before do
+      @url = subject._all(args)
     end
 
-    describe ".find" do
-      before do
-        image_id = @response.images.first.id
-        @response2 = subject.retrieve(image_id)
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/images/?client_id=client_id_required&api_key=api_key_required&filter=my_images"
+    end
+  end
 
-      context "default" do
-        it do
-          @response.status.should eq ok
-        end
-      end
+  describe "._find" do
+    let(:id) { "1234" }
+
+    before do
+      @url = subject._find(id)
     end
 
+    it do
+      @url.should eq "https://api.digitalocean.com/images/#{id}/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 
+  describe "._destroy" do
+    let(:id) { "1234" }
+
+    before do
+      @url = subject._destroy(id)
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/images/#{id}/destroy/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
+
+  describe "._transfer" do
+    let(:id) { "1234" }
+    let(:region_id) { "44" }
+    let(:args) { {region_id: region_id } }
+
+    before do
+      @url = subject._transfer(id, args)
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/images/#{id}/transfer/?client_id=client_id_required&api_key=api_key_required&region_id=44"
+    end
   end
 end

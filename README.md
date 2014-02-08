@@ -6,71 +6,88 @@ This gem is a wrapper for [DigitalOcean.com](https://www.digitalocean.com)'s API
 
 Add this line to your application's Gemfile:
 
-    gem 'digitalocean'
+```
+gem 'digitalocean'
+```
 
 And then execute:
 
-    $ bundle
+```
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install digitalocean
+```
+gem install digitalocean
+```
 
 Then in your application initialize the gem:
 
-    $ Digitalocean.client_id  = "your_client_id"
-    $ Digitalocean.api_key    = "your_api_key"
+```ruby
+Digitalocean.client_id  = "your_client_id"
+Digitalocean.api_key    = "your_api_key"
+```
 
 ## Usage
 
 ### List Droplets
 
-    $ Digitalocean::Droplet.all
+```ruby
+Digitalocean::Droplet.all
+```
 
-### Retrieve Droplet
+### Find Droplet
 
-    $ Digitalocean::Droplet.retrieve("id_of_droplet")
+```ruby
+Digitalocean::Droplet.find("id_of_droplet")
+```
 
 ### Create Droplet
 
-    $ Digitalocean::Droplet.create({:name => droplet_name, :size_id => size_id, :image_id => image_id, :region_id => region_id)
-
+```ruby
+Digitalocean::Droplet.create({:name => droplet_name, :size_id => size_id, :image_id => image_id, :region_id => region_id)
+```
 ## Available Commands
 
-    $ Digitalocean::Droplet.all
-    $ Digitalocean::Droplet.retrieve(id)
-    $ Digitalocean::Droplet.create({})
-    $ Digitalocean::Droplet.reboot(id)
-    $ Digitalocean::Droplet.power_cycle(id)
-    $ Digitalocean::Droplet.shut_down(id)
-    $ Digitalocean::Droplet.power_off(id)
-    $ Digitalocean::Droplet.power_on(id)
-    $ Digitalocean::Droplet.snapshot(id)
-    $ Digitalocean::Droplet.destroy(id)
+```ruby
+Digitalocean::Domain.all
+Digitalocean::Domain.find(id)
+Digitalocean::Domain.create({name: name, ip_address: ip_address})
+Digitalocean::Domain.destroy(id)
 
-    $ Digitalocean::Image.all
-    $ Digitalocean::Image.find(id)
-    $ Digitalocean::Image.destroy(id)
-    $ Digitalocean::Image.transfer(id, region_id)
+Digitalocean::Droplet.all
+Digitalocean::Droplet.find(id)
+Digitalocean::Droplet.rename(id, {name: name})
+Digitalocean::Droplet.reboot(id)
+Digitalocean::Droplet.power_cycle(id)
+Digitalocean::Droplet.shut_down(id)
+Digitalocean::Droplet.power_off(id)
+Digitalocean::Droplet.power_on(id)
+Digitalocean::Droplet.snapshot(id, {name: name})
+Digitalocean::Droplet.create({name: name, size_id: size_id, image_id: image_id, region_id: region_id, ssh_key_ids: ssh_key_ids})
+Digitalocean::Droplet.destroy(id)
 
-    $ Digitalocean::Region.all
+Digitalocean::Image.all
+Digitalocean::Image.all({filter: "my_images"})
+Digitalocean::Image.find(id)
+Digitalocean::Image.destroy(id)
+Digitalocean::Image.transfer(id, {region_id: region_id})
 
-    $ Digitalocean::Size.all
+Digitalocean::Record.all(domain_id)
+Digitalocean::Record.find(domain_id, record_id)
+Digitalocean::Record.create(domain_id, {record_type: record_type, data: data})
+Digitalocean::Record.edit(domain_id, record_id, {record_type: record_type, data: data})
+Digitalocean::Record.destroy(domain_id, record_id)
 
-    $ Digitalocean::SshKey.all
-    $ Digitalocean::SshKey.retrieve(id)
-    $ Digitalocean::SshKey.create({})
+Digitalocean::Region.all
 
-    $ Digitalocean::Domain.all
-    $ Digitalocean::Domain.find(id)
-    $ Digitalocean::Domain.create(domain_name, ip_address)
-    $ Digitalocean::Domain.destroy(id)
+Digitalocean::Size.all
 
-    $ Digitalocean::Record.all(domain_id)
-    $ Digitalocean::Record.find(domain_id, record_id)
-    $ Digitalocean::Record.create(domain_id, record_type, data, [name, priority, port, weight])
-    $ Digitalocean::Record.edit(domain_id, record_id, {})
-    $ Digitalocean::Record.destroy(domain_id, record_id)
+Digitalocean::SshKey.all
+Digitalocean::SshKey.find(id)
+Digitalocean::SshKey.create({name: name, ssh_pub_key: ssh_pub_key})
+```
 
 ## Contributing
 
@@ -80,8 +97,10 @@ Then in your application initialize the gem:
 6. Push to the branch (`git push origin my-new-feature`)
 7. Create new Pull Request
 
+When adding methods, add to the list of DEFINITIONS in `lib/digitalocean.rb`. Additionally, write a spec and add it to the list in the README.
+
 ## Running Specs
 
-1. cp .env-example .env
-2. Set your credentials in the .env file
-3. bundle exec foreman run bundle exec rspec spec/digitalocean/*
+```
+bundle exec rspec spec/*
+```

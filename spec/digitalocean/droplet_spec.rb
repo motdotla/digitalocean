@@ -1,52 +1,141 @@
 require 'spec_helper'
 
 describe Digitalocean::Droplet do
-  let(:ok)        { "OK" }
   let(:subject)   { Digitalocean::Droplet }
 
-  context "correct api key" do
+  describe "._all" do
     before do
-      set_client_id_and_api_key!
+      @url = subject._all
     end
 
-    describe ".all" do
-      before do
-        @response = subject.all
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 
-      context "default" do
-        it do
-          @response.status.should eq ok
-        end
-      end
+  describe "._find" do
+    let(:droplet_id) { "1234" }
 
-      describe ".retrieve" do
-        before do
-          droplet_id = @response.droplets.first.id
-          @response2 = subject.retrieve(droplet_id)
-        end
+    before do
+      @url = subject._find(droplet_id)
+    end
 
-        context "default" do
-          it do
-            @response2.status.should eq ok
-          end
-        end
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 
-      describe ".snapshot" do
-        let(:snapshot_name) { ["digitalocean_spec_", SecureRandom.hex(15)].join }
+  describe "._rename" do
+    let(:droplet_id) { "1234" }
+    let(:name) { "new_name" }
 
-        before do
-          droplet_id = @response.droplets.first.id
-          @response2 = subject.snapshot(droplet_id, snapshot_name)
-        end
+    before do
+      @url = subject._rename(droplet_id, {name: name})
+    end
 
-        context "default" do
-          it do
-            @response2.status.should eq ok
-          end
-        end
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/rename/?client_id=client_id_required&api_key=api_key_required&name=#{name}"
+    end
+  end
+  
+  describe "._reboot" do
+    let(:droplet_id) { "1234" }
+
+    before do
+      @url = subject._reboot(droplet_id)
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/reboot/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
+
+  describe "._power_cycle" do
+    let(:droplet_id) { "1234" }
+
+    before do
+      @url = subject._power_cycle(droplet_id)
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/power_cycle/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
+
+  describe "._shut_down" do
+    let(:droplet_id) { "1234" }
+
+    before do
+      @url = subject._shut_down(droplet_id)
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/shut_down/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
+
+  describe "._power_off" do
+    let(:droplet_id) { "1234" }
+
+    before do
+      @url = subject._power_off(droplet_id)
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/power_off/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
+
+  describe "._power_on" do
+    let(:droplet_id) { "1234" }
+
+    before do
+      @url = subject._power_on(droplet_id)
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/power_on/?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
+
+  describe "._snapshot" do
+    let(:droplet_id) { "1234" }
+    let(:snapshot_name) { "test_name" }
+
+    before do
+      @url = subject._snapshot(droplet_id, {name: snapshot_name})
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/snapshot/?name=#{snapshot_name}&client_id=client_id_required&api_key=api_key_required"
+    end
+  end
+
+  describe "._create" do
+    let(:name)      { "test_name" }
+    let(:size_id)   { "1234" }
+    let(:image_id)  { "11" }
+    let(:region_id) { "44" }
+    let(:ssh_key_ids) { "12,92" }
+
+    before do
+      @url = subject._create({name: name, size_id: size_id, image_id: image_id, region_id: region_id, ssh_key_ids: ssh_key_ids})
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/new?client_id=client_id_required&api_key=api_key_required&name=#{name}&size_id=#{size_id}&image_id=#{image_id}&region_id=#{region_id}&ssh_key_ids=#{ssh_key_ids}"
+    end
+  end
+
+  describe "._destroy" do
+    let(:droplet_id) { "1234" }
+
+    before do
+      @url = subject._destroy(droplet_id)
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/destroy/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 end

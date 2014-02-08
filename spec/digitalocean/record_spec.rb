@@ -1,85 +1,74 @@
 require 'spec_helper'
 
 describe Digitalocean::Record do
-  let(:ok)        { "OK" }
   let(:subject)   { Digitalocean::Record }
 
-  context "correct api key" do
+  describe "._all" do
+    let(:domain_id) { "100" }
+
     before do
-      set_client_id_and_api_key!
+      @url = subject._all(domain_id)
     end
 
-    describe ".all" do
-      before do
-        domain_id = @response.domains.first.id
-        @response = subject.all(domain_id)
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 
-      context "default" do
-        it do
-          @response.status.should eq ok
-        end
-      end
+  describe "._find" do
+    let(:domain_id) { "100" }
+    let(:record_id) { "50" }
 
-      describe ".find" do
-        before do
-          domain_id = @response.domains.first.id
-          record_id = subject.all(domain_id).first.id
-          @response2 = subject.find(domain_id, record_id)
-        end
+    before do
+      @url = subject._find(domain_id, record_id)
+    end
 
-        context "default" do
-          it do
-            @response2.status.should eq ok
-          end
-        end
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/#{record_id}?client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 
-      describe ".create" do
-        let(:domain_name) { ["digitalocean_spec_", SecureRandom.hex(15), ".com"].join }
+  describe "._create" do
+    let(:domain_id)   { "100" }
+    let(:record_type) { "A" }
+    let(:data)        { "@" }
+    let(:attrs) { {record_type: record_type, data: data } }
 
-        before do
-          domain = @response.domains.first
-          @response_create = subject.create(domain.id, 'CNAME', 'www', '@')
-        end
+    before do
+      @url = subject._create(domain_id, attrs)
+    end
 
-        context "default" do
-          it do
-            @response_create.status.should eq ok
-          end
-        end
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/new?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}"
+    end
+  end
 
-      describe ".edit" do
+  describe "._edit" do
+    let(:domain_id)   { "100" }
+    let(:record_id)   { "50" }
+    let(:record_type) { "A" }
+    let(:data)        { "@" }
+    let(:attrs) { {record_type: record_type, data: data } }
 
-        before do
-          domain = @response.domains.first
-          record = subject.all(domain.id).first
-          @response_create = subject.edit(domain.id, record.id, { data: '@' })
-        end
+    before do
+      @url = subject._edit(domain_id, record_id, attrs)
+    end
 
-        context "default" do
-          it do
-            @response_create.status.should eq ok
-          end
-        end
-      end
+    it do
+      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/#{record_id}/edit?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}"
+    end
+  end
 
-      describe ".destroy" do
+  describe "._destroy" do
+    let(:domain_id)   { "100" }
+    let(:record_id)   { "50" }
 
-        before do
-          domain = @response.domains.first
-          record = subject.all(domain.id).first@response_create = subject.create(domain_name, droplet.ip_address)
-          @response_destroy = subject.destroy(domain.id, record.id)
-        end
+    before do
+      @url = subject._destroy(domain_id, record_id)
+    end
 
-        context "default" do
-          it do
-            @response_destroy.status.should eq ok
-          end
-        end
-      end
-
+    it do
+      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/#{record_id}/destroy?client_id=client_id_required&api_key=api_key_required"
     end
   end
 end
