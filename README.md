@@ -1,6 +1,6 @@
 # Digitalocean Ruby Bindings
 
-This gem is a wrapper for [DigitalOcean.com](https://www.digitalocean.com)'s API.
+### The easiest and most complete rubygem for [DigitalOcean](https://www.digitalocean.com). 
 
 [![BuildStatus](https://travis-ci.org/scottmotte/digitalocean.png?branch=master)](https://travis-ci.org/scottmotte/digitalocean)
 [![Gem Version](https://badge.fury.io/rb/digitalocean.png)](http://badge.fury.io/rb/digitalocean)
@@ -9,7 +9,7 @@ This gem is a wrapper for [DigitalOcean.com](https://www.digitalocean.com)'s API
 Digitalocean.client_id  = "your_client_id"
 Digitalocean.api_key    = "your_api_key"
 droplets = Digitalocean::Droplet.all
-puts droplets.inspect
+
 ```
 
 ## Installation
@@ -38,6 +38,8 @@ Then in your application initialize the gem:
 Digitalocean.client_id  = "your_client_id"
 Digitalocean.api_key    = "your_api_key"
 ```
+
+You can find your keys at [https://cloud.digitalocean.com/api_access](https://cloud.digitalocean.com/api_access)
 
 ## Usage
 
@@ -101,7 +103,9 @@ Digitalocean::SshKey.create({name: name, ssh_pub_key: ssh_pub_key})
 Digitalocean::Event.find(id)
 ```
 
-There's also an [digitalocean-rubygem-example](https://github.com/scottmotte/digitalocean-rubygem-example) if you find you need more context.
+## Example
+
+There is a [digitalocean-rubygem-example](https://github.com/scottmotte/digitalocean-rubygem-example) to help jumpstart your development. 
 
 ## Contributing
 
