@@ -19,7 +19,7 @@ module Digitalocean
       "rename"    => "https://api.digitalocean.com/droplets/[droplet_id]/rename/?client_id=[your_client_id]&api_key=[your_api_key]&name=[name]",
       "reboot"    => "https://api.digitalocean.com/droplets/[droplet_id]/reboot/?client_id=[your_client_id]&api_key=[your_api_key]",
       "power_cycle" => "https://api.digitalocean.com/droplets/[droplet_id]/power_cycle/?client_id=[your_client_id]&api_key=[your_api_key]",
-      "shut_down" => "https://api.digitalocean.com/droplets/[droplet_id]/shut_down/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "shutdown" => "https://api.digitalocean.com/droplets/[droplet_id]/shutdown/?client_id=[your_client_id]&api_key=[your_api_key]",
       "power_off" => "https://api.digitalocean.com/droplets/[droplet_id]/power_off/?client_id=[your_client_id]&api_key=[your_api_key]",
       "power_on"  => "https://api.digitalocean.com/droplets/[droplet_id]/power_on/?client_id=[your_client_id]&api_key=[your_api_key]",
       "snapshot"  => "https://api.digitalocean.com/droplets/[droplet_id]/snapshot/?name=[snapshot_name]&client_id=[your_client_id]&api_key=[your_api_key]",

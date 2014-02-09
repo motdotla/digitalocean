@@ -62,15 +62,15 @@ describe Digitalocean::Droplet do
     end
   end
 
-  describe "._shut_down" do
+  describe "._shutdown" do
     let(:droplet_id) { "1234" }
 
     before do
-      @url = subject._shut_down(droplet_id)
+      @url = subject._shutdown(droplet_id)
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/shut_down/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/shutdown/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
