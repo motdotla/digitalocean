@@ -140,5 +140,5 @@ You first need to request access from [scottmotte](http://github.com/scottmotte)
 
 ```
 gem build digitalocean.gemspec
-gem push digitalocean-1.0.0.gem
+gem push digitalocean-1.0.1.gem
 ```
