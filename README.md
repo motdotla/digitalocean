@@ -18,6 +18,7 @@ result = Digitalocean::Droplet.all
 
 result.status
 result.droplets
+result.droplets.first.ip_address
 ```
 
 ## Installation
