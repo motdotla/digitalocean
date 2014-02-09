@@ -8,8 +8,13 @@
 ```ruby
 Digitalocean.client_id  = "your_client_id"
 Digitalocean.api_key    = "your_api_key"
-droplets = Digitalocean::Droplet.all
-
+Digitalocean::Droplet.all
+# =>
+# <RecursiveOpenStruct status="OK", droplets=[
+#   {"id"=>12345, "name"=>"dev", "image_id"=>2676, "size_id"=>63, "region_id"=>3, "backups_active"=>false, "ip_address"=>"198.555.55.55", "private_ip_address"=>nil, "locked"=>false, "status"=>"active", "created_at"=>"2013-06-12T03:07:14Z"}, 
+#   {"id"=>234674, "name"=>"server2", "image_id"=>441012, "size_id"=>62, "region_id"=>1, "backups_active"=>false, "ip_address"=>"192.555.55.56", "private_ip_address"=>nil, "locked"=>false, "status"=>"active", "created_at"=>"2013-06-17T00:30:12Z"}
+# ]>
+#
 ```
 
 ## Installation
