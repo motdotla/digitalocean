@@ -1,4 +1,4 @@
-# Digitalocean Ruby Bindings
+# Digitalocean Rubygem 
 
 ### The easiest and most complete rubygem for [DigitalOcean](https://www.digitalocean.com). 
 
