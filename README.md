@@ -50,6 +50,8 @@ Digitalocean.api_key    = "your_api_key"
 
 You can find your keys at [https://cloud.digitalocean.com/api_access](https://cloud.digitalocean.com/api_access)
 
+![](https://raw2.github.com/scottmotte/digitalocean/master/example.png)
+
 ## Usage
 
 ### List Droplets
