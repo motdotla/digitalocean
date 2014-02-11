@@ -1,5 +1,7 @@
 # Digitalocean Rubygem 
 
+![](https://raw.github.com/scottmotte/digitalocean/master/digitalocean-rubygem.jpg)
+
 ### The easiest and most complete rubygem for [DigitalOcean](https://www.digitalocean.com). 
 
 [![BuildStatus](https://travis-ci.org/scottmotte/digitalocean.png?branch=master)](https://travis-ci.org/scottmotte/digitalocean)
