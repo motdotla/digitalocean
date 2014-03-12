@@ -68,10 +68,10 @@ module Digitalocean
         post_query    = parts[1]
 
         singleton.send :define_method, "_#{method_name}" do |*args|
-          pre_query   = Digitalocean.process_standard_args_from_part(pre_query, args)
-          post_query  = Digitalocean.process_hash_args_from_part(post_query, args)
+          pre_query_for_method   = Digitalocean.process_standard_args_from_part(pre_query, args)
+          post_query_for_method  = Digitalocean.process_hash_args_from_part(post_query, args)
 
-          [pre_query, post_query].join("?")
+          [pre_query_for_method, post_query_for_method].join("?")
         end
 
         singleton.send :define_method, method_name do |*args|
