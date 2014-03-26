@@ -123,7 +123,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/new?client_id=client_id_required&api_key=api_key_required&name=#{name}&size_id=#{size_id}&image_id=#{image_id}&region_id=#{region_id}&ssh_key_ids=#{ssh_key_ids}"
+      @url.should eq "https://api.digitalocean.com/droplets/new?client_id=client_id_required&api_key=api_key_required&name=#{name}&size_id=#{size_id}&image_id=#{image_id}&region_id=#{region_id}&ssh_key_ids=#{ssh_key_ids}&private_networking=private_networking&backups_enabled=backups_enabled"
     end
   end
 
