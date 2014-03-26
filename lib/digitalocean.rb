@@ -10,8 +10,8 @@ module Digitalocean
     "Domain"  => {
       "all"       => "https://api.digitalocean.com/domains?client_id=[your_client_id]&api_key=[your_api_key]",
       "find"      => "https://api.digitalocean.com/domains/[domain_id]?client_id=[your_client_id]&api_key=[your_api_key]",
-      "create"    => "https://api.digitalocean.com/domains/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[domain]&ip_address=[ip_address]", 
-      "destroy"   => "https://api.digitalocean.com/domains/[domain_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]" 
+      "create"    => "https://api.digitalocean.com/domains/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[domain]&ip_address=[ip_address]",
+      "destroy"   => "https://api.digitalocean.com/domains/[domain_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Droplet" => {
       "all"       => "https://api.digitalocean.com/droplets/?client_id=[your_client_id]&api_key=[your_api_key]",
@@ -23,21 +23,21 @@ module Digitalocean
       "power_off" => "https://api.digitalocean.com/droplets/[droplet_id]/power_off/?client_id=[your_client_id]&api_key=[your_api_key]",
       "power_on"  => "https://api.digitalocean.com/droplets/[droplet_id]/power_on/?client_id=[your_client_id]&api_key=[your_api_key]",
       "snapshot"  => "https://api.digitalocean.com/droplets/[droplet_id]/snapshot/?name=[snapshot_name]&client_id=[your_client_id]&api_key=[your_api_key]",
-      "create"    => "https://api.digitalocean.com/droplets/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[droplet_name]&size_id=[size_id]&image_id=[image_id]&region_id=[region_id]&ssh_key_ids=[ssh_key_ids]", # unique case that is not copy/paste 
+      "create"    => "https://api.digitalocean.com/droplets/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[droplet_name]&size_id=[size_id]&image_id=[image_id]&region_id=[region_id]&ssh_key_ids=[ssh_key_ids]&private_networking=[private_networking]&backups_enabled=[backups_enabled]", # unique case that is not copy/paste
       "destroy"   => "https://api.digitalocean.com/droplets/[droplet_id]/destroy/?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Image"   => {
       "all"       => "https://api.digitalocean.com/images/?client_id=[your_client_id]&api_key=[your_api_key]",
       "find"      => "https://api.digitalocean.com/images/[image_id]/?client_id=[your_client_id]&api_key=[your_api_key]",
       "destroy"      => "https://api.digitalocean.com/images/[image_id]/destroy/?client_id=[your_client_id]&api_key=[your_api_key]",
-      "transfer"      => "https://api.digitalocean.com/images/[image_id]/transfer/?client_id=[your_client_id]&api_key=[your_api_key]&region_id=[region_id]" 
+      "transfer"      => "https://api.digitalocean.com/images/[image_id]/transfer/?client_id=[your_client_id]&api_key=[your_api_key]&region_id=[region_id]"
     },
     "Record"  => {
       "all"       => "https://api.digitalocean.com/domains/[domain_id]/records?client_id=[your_client_id]&api_key=[your_api_key]",
       "find"       => "https://api.digitalocean.com/domains/[domain_id]/records/[record_id]?client_id=[your_client_id]&api_key=[your_api_key]",
       "create"     => "https://api.digitalocean.com/domains/[domain_id]/records/new?client_id=[your_client_id]&api_key=[your_api_key]&record_type=[record_type]&data=[data]",
       "edit"       => "https://api.digitalocean.com/domains/[domain_id]/records/[record_id]/edit?client_id=[your_client_id]&api_key=[your_api_key]",
-      "destroy"    => "https://api.digitalocean.com/domains/[domain_id]/records/[record_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]" 
+      "destroy"    => "https://api.digitalocean.com/domains/[domain_id]/records/[record_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Region"  => {
       "all"       => "https://api.digitalocean.com/regions/?client_id=[your_client_id]&api_key=[your_api_key]"
@@ -80,7 +80,7 @@ module Digitalocean
       end
     end
 
-    Digitalocean.const_set(resource_name, resource_class) 
+    Digitalocean.const_set(resource_name, resource_class)
   end
 
   def request=(request)
@@ -161,7 +161,7 @@ module Digitalocean
       if parts.length > 1
         hash.each do |key, value|
           query_setter    = "#{key}="
-          query_arg_index = parts.index query_setter 
+          query_arg_index = parts.index query_setter
           query_arg_index = parts.index "&#{query_setter}" if !query_arg_index # handle case of ampersand
 
           if query_arg_index != nil
