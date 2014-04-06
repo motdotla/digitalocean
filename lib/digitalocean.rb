@@ -43,7 +43,8 @@ module Digitalocean
       "all"       => "https://api.digitalocean.com/regions/?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Size"    => {
-      "all"       => "https://api.digitalocean.com/sizes/?client_id=[your_client_id]&api_key=[your_api_key]"
+      "all"       => "https://api.digitalocean.com/sizes/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "find"       => "https://api.digitalocean.com/sizes/[size_id]?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "SshKey"  => {
       "all"       => "https://api.digitalocean.com/ssh_keys/?client_id=[your_client_id]&api_key=[your_api_key]",
