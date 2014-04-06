@@ -40,7 +40,8 @@ module Digitalocean
       "destroy"    => "https://api.digitalocean.com/domains/[domain_id]/records/[record_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Region"  => {
-      "all"       => "https://api.digitalocean.com/regions/?client_id=[your_client_id]&api_key=[your_api_key]"
+      "all"       => "https://api.digitalocean.com/regions/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "find"       => "https://api.digitalocean.com/regions/[region_id]?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Size"    => {
       "all"       => "https://api.digitalocean.com/sizes/?client_id=[your_client_id]&api_key=[your_api_key]",
