@@ -106,8 +106,10 @@ Digitalocean::Record.edit(domain_id, record_id, {record_type: record_type, data:
 Digitalocean::Record.destroy(domain_id, record_id)
 
 Digitalocean::Region.all
+Digitalocean::Region.find(region_id)
 
 Digitalocean::Size.all
+Digitalocean::Size.find(size_id)
 
 Digitalocean::SshKey.all
 Digitalocean::SshKey.find(id)
