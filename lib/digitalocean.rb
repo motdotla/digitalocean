@@ -1,3 +1,5 @@
+require "fileutils"
+require "json"
 require "faraday"
 require "faraday_middleware"
 require "recursive-open-struct"
@@ -117,14 +119,55 @@ module Digitalocean
     "api_key_required"
   end
 
+  def cache_time=(cache_time)
+    @cache_time = cache_time
+    @cache_time
+  end
+
+  def cache_time
+    return @cache_time if @cache_time
+    "cache_time_required"
+  end
+
   def api_endpoint
     "https://api.digitalocean.com"
   end
 
-  def request_and_respond(url)
-    resp = Digitalocean.request.get url
-    hash = RecursiveOpenStruct.new(resp.body, :recurse_over_arrays => true)
+  def api_endpoind_remover(url)
+    return "#{url.sub(api_endpoint, '').split('?')[0]}"
+  end
 
+  def responding_from_cache(url)
+    # time to cache (in seconds)
+    now = Time.now
+    time_to_cache = now.to_i - 120
+    cache_path = "tmp/cache/digitalocean_api"
+
+    file_path = File.join(cache_path, api_endpoind_remover(url), 'index.json')
+    file_dir = File.dirname(file_path)
+
+    unless Dir.exists?(cache_path)
+      FileUtils.mkdir_p cache_path
+    end
+    if File.exists?(file_path)
+      if File.open(file_path).mtime.to_i > time_to_cache
+        resp = File.read(file_path)
+        resp
+      end
+    end
+
+    unless Dir.exists?(file_dir)
+      FileUtils.mkdir_p file_dir
+    end
+    resp = Digitalocean.request.get url
+    File.open(file_path, 'w+') do |f|
+      f.write(resp.body)
+    end
+    resp.body
+  end
+
+  def request_and_respond(url)
+    hash = RecursiveOpenStruct.new(responding_from_cache(url), :recurse_over_arrays => true)
     hash
   end
 
