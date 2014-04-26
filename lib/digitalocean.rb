@@ -140,7 +140,7 @@ module Digitalocean
   def responding_from_cache(url)
     # time to cache (in seconds)
     now = Time.now
-    time_to_cache = now.to_i - 120
+    time_to_cache = now.to_i - cache_time
     cache_path = "tmp/cache/digitalocean_api"
 
     file_path = File.join(cache_path, api_endpoind_remover(url), 'index.json')

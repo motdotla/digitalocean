@@ -48,6 +48,7 @@ Then in your application initialize the gem:
 ```ruby
 Digitalocean.client_id  = "your_client_id"
 Digitalocean.api_key    = "your_api_key"
+Digitalocean.cache_time = "300" # value in seconds. 0 = disabled
 ```
 
 You can find your keys at [https://cloud.digitalocean.com/api_access](https://cloud.digitalocean.com/api_access)
