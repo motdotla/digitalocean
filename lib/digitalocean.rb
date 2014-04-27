@@ -24,7 +24,7 @@ module Digitalocean
       "power_on"  => "https://api.digitalocean.com/droplets/[droplet_id]/power_on/?client_id=[your_client_id]&api_key=[your_api_key]",
       "snapshot"  => "https://api.digitalocean.com/droplets/[droplet_id]/snapshot/?name=[snapshot_name]&client_id=[your_client_id]&api_key=[your_api_key]",
       "create"    => "https://api.digitalocean.com/droplets/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[droplet_name]&size_id=[size_id]&image_id=[image_id]&region_id=[region_id]&ssh_key_ids=[ssh_key_ids]&private_networking=[private_networking]&backups_enabled=[backups_enabled]", # unique case that is not copy/paste
-      "destroy"   => "https://api.digitalocean.com/droplets/[droplet_id]/destroy/?client_id=[your_client_id]&api_key=[your_api_key]"
+      "destroy"   => "https://api.digitalocean.com/droplets/[droplet_id]/destroy/?client_id=[your_client_id]&api_key=[your_api_key]",
       "resize"   => "https://api.digitalocean.com/droplets/[droplet_id]/resize/?size_id=[size_id]&client_id=[client_id]&api_key=[api_key]"
     },
     "Image"   => {
