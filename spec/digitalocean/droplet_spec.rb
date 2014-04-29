@@ -138,4 +138,17 @@ describe Digitalocean::Droplet do
       @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/destroy/?client_id=client_id_required&api_key=api_key_required"
     end
   end
+
+  describe "._resize" do
+    let(:droplet_id) { "1234" }
+    let(:size_id) { "45" }
+
+    before do
+      @url = subject._resize(droplet_id, {size_id: size_id})
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/resize/?size_id=#{size_id}&client_id=client_id_required&api_key=api_key_required"
+    end
+  end
 end

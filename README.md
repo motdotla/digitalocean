@@ -92,6 +92,7 @@ Digitalocean::Droplet.power_on(id)
 Digitalocean::Droplet.snapshot(id, {name: name})
 Digitalocean::Droplet.create({name: name, size_id: size_id, image_id: image_id, region_id: region_id, ssh_key_ids: ssh_key_ids})
 Digitalocean::Droplet.destroy(id)
+Digitalocean::Droplet.resize(id, {size_id: size_id})
 
 Digitalocean::Image.all
 Digitalocean::Image.all({filter: "my_images"})
