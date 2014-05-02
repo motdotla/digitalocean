@@ -5,7 +5,7 @@
 ### The easiest and most complete rubygem for [DigitalOcean](https://www.digitalocean.com). 
 
 [![Build Status](https://travis-ci.org/scottmotte/digitalocean.svg?branch=master)](https://travis-ci.org/scottmotte/digitalocean)
-[![Gem Version](https://badge.fury.io/rb/digitalocean.png)](http://badge.fury.io/rb/digitalocean)
+[![Gem Version](https://badge.fury.io/rb/digitalocean.svg)](http://badge.fury.io/rb/digitalocean)
 
 ```ruby
 Digitalocean.client_id  = "your_client_id"
