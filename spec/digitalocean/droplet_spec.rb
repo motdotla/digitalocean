@@ -38,6 +38,18 @@ describe Digitalocean::Droplet do
     end
   end
   
+  describe "._rebuild" do
+    let(:droplet_id) { "1234" }
+
+    before do
+      @url = subject._rebuild(droplet_id)
+    end
+
+    it do
+      @url.should eq "https://api.digitalocean.com/v1/droplets/[droplet_id]/rebuild/?image_id=[image_id]&client_id=[client_id]&api_key=[api_key]"
+    end
+  end
+  
   describe "._reboot" do
     let(:droplet_id) { "1234" }
 
