@@ -29,10 +29,10 @@ module Digitalocean
       "resize"   => "https://api.digitalocean.com/droplets/[droplet_id]/resize/?size_id=[size_id]&client_id=[client_id]&api_key=[api_key]"
     },
     "Image"   => {
-      "all"       => "https://api.digitalocean.com/images/?client_id=[your_client_id]&api_key=[your_api_key]",
-      "find"      => "https://api.digitalocean.com/images/[image_id]/?client_id=[your_client_id]&api_key=[your_api_key]",
-      "destroy"      => "https://api.digitalocean.com/images/[image_id]/destroy/?client_id=[your_client_id]&api_key=[your_api_key]",
-      "transfer"      => "https://api.digitalocean.com/images/[image_id]/transfer/?client_id=[your_client_id]&api_key=[your_api_key]&region_id=[region_id]"
+      "all"       => "https://api.digitalocean.com/v1/images/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "find"      => "https://api.digitalocean.com/v1/images/[image_id]/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "destroy"      => "https://api.digitalocean.com/v1/images/[image_id]/destroy/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "transfer"      => "https://api.digitalocean.com/v1/images/[image_id]/transfer/?client_id=[your_client_id]&api_key=[your_api_key]&region_id=[region_id]"
     },
     "Record"  => {
       "all"       => "https://api.digitalocean.com/domains/[domain_id]/records?client_id=[your_client_id]&api_key=[your_api_key]",
