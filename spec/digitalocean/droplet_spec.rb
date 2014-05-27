@@ -50,7 +50,7 @@ describe Digitalocean::Droplet do
       @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/rebuild/?image_id=#{image_id}&client_id=client_id_required&api_key=api_key_required"
     end
   end
-  
+
   describe "._reboot" do
     let(:droplet_id) { "1234" }
 
