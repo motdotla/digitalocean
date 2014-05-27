@@ -8,10 +8,10 @@ module Digitalocean
 
   DEFINITIONS     = {
     "Domain"  => {
-      "all"       => "https://api.digitalocean.com/domains?client_id=[your_client_id]&api_key=[your_api_key]",
-      "find"      => "https://api.digitalocean.com/domains/[domain_id]?client_id=[your_client_id]&api_key=[your_api_key]",
-      "create"    => "https://api.digitalocean.com/domains/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[domain]&ip_address=[ip_address]",
-      "destroy"   => "https://api.digitalocean.com/domains/[domain_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]"
+      "all"       => "https://api.digitalocean.com/v1/domains?client_id=[your_client_id]&api_key=[your_api_key]",
+      "find"      => "https://api.digitalocean.com/v1/domains/[domain_id]?client_id=[your_client_id]&api_key=[your_api_key]",
+      "create"    => "https://api.digitalocean.com/v1/domains/new?client_id=[your_client_id]&api_key=[your_api_key]&name=[domain]&ip_address=[ip_address]",
+      "destroy"   => "https://api.digitalocean.com/v1/domains/[domain_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Droplet" => {
       "all"       => "https://api.digitalocean.com/droplets/?client_id=[your_client_id]&api_key=[your_api_key]",
@@ -35,11 +35,11 @@ module Digitalocean
       "transfer"      => "https://api.digitalocean.com/v1/images/[image_id]/transfer/?client_id=[your_client_id]&api_key=[your_api_key]&region_id=[region_id]"
     },
     "Record"  => {
-      "all"       => "https://api.digitalocean.com/domains/[domain_id]/records?client_id=[your_client_id]&api_key=[your_api_key]",
-      "find"       => "https://api.digitalocean.com/domains/[domain_id]/records/[record_id]?client_id=[your_client_id]&api_key=[your_api_key]",
-      "create"     => "https://api.digitalocean.com/domains/[domain_id]/records/new?client_id=[your_client_id]&api_key=[your_api_key]&record_type=[record_type]&data=[data]",
-      "edit"       => "https://api.digitalocean.com/domains/[domain_id]/records/[record_id]/edit?client_id=[your_client_id]&api_key=[your_api_key]",
-      "destroy"    => "https://api.digitalocean.com/domains/[domain_id]/records/[record_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]"
+      "all"       => "https://api.digitalocean.com/v1/domains/[domain_id]/records?client_id=[your_client_id]&api_key=[your_api_key]",
+      "find"       => "https://api.digitalocean.com/v1/domains/[domain_id]/records/[record_id]?client_id=[your_client_id]&api_key=[your_api_key]",
+      "create"     => "https://api.digitalocean.com/v1/domains/[domain_id]/records/new?client_id=[your_client_id]&api_key=[your_api_key]&record_type=[record_type]&data=[data]",
+      "edit"       => "https://api.digitalocean.com/v1/domains/[domain_id]/records/[record_id]/edit?client_id=[your_client_id]&api_key=[your_api_key]",
+      "destroy"    => "https://api.digitalocean.com/v1/domains/[domain_id]/records/[record_id]/destroy?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Region"  => {
       "all"       => "https://api.digitalocean.com/v1/regions/?client_id=[your_client_id]&api_key=[your_api_key]",
