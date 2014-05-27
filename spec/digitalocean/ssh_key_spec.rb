@@ -9,7 +9,7 @@ describe Digitalocean::SshKey do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/ssh_keys/?client_id=client_id_required&api_key=api_key_required" 
+      @url.should eq "https://api.digitalocean.com/v1/ssh_keys/?client_id=client_id_required&api_key=api_key_required" 
     end
   end
 
@@ -20,7 +20,7 @@ describe Digitalocean::SshKey do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/ssh_keys/test_key/?client_id=client_id_required&api_key=api_key_required" 
+      @url.should eq "https://api.digitalocean.com/v1/ssh_keys/test_key/?client_id=client_id_required&api_key=api_key_required" 
     end
   end
 
@@ -49,7 +49,7 @@ describe Digitalocean::SshKey do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/ssh_keys/new/?name=#{name}&ssh_pub_key=#{ssh_pub_key}&client_id=client_id_required&api_key=api_key_required" 
+      @url.should eq "https://api.digitalocean.com/v1/ssh_keys/new/?name=#{name}&ssh_pub_key=#{ssh_pub_key}&client_id=client_id_required&api_key=api_key_required" 
     end
   end
 

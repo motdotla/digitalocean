@@ -49,10 +49,10 @@ module Digitalocean
       "find"       => "https://api.digitalocean.com/sizes/[size_id]?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "SshKey"  => {
-      "all"       => "https://api.digitalocean.com/ssh_keys/?client_id=[your_client_id]&api_key=[your_api_key]",
-      "find"      => "https://api.digitalocean.com/ssh_keys/[ssh_key_id]/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "all"       => "https://api.digitalocean.com/v1/ssh_keys/?client_id=[your_client_id]&api_key=[your_api_key]",
+      "find"      => "https://api.digitalocean.com/v1/ssh_keys/[ssh_key_id]/?client_id=[your_client_id]&api_key=[your_api_key]",
       "edit"      => "https://api.digitalocean.com/v1/ssh_keys/[ssh_key_id]/edit/?name=[ssh_key_name]&ssh_pub_key=[ssh_public_key]&client_id=[client_id]&api_key=[api_key]", 
-      "create"    => "https://api.digitalocean.com/ssh_keys/new/?name=[ssh_key_name]&ssh_pub_key=[ssh_public_key]&client_id=[your_client_id]&api_key=[your_api_key]",
+      "create"    => "https://api.digitalocean.com/v1/ssh_keys/new/?name=[ssh_key_name]&ssh_pub_key=[ssh_public_key]&client_id=[your_client_id]&api_key=[your_api_key]",
      "destroy"   => "https://api.digitalocean.com/v1/ssh_keys/[ssh_key_id]/destroy/?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Event"   => {
