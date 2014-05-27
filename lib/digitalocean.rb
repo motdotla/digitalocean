@@ -55,7 +55,7 @@ module Digitalocean
      "destroy"   => "https://api.digitalocean.com/v1/ssh_keys/[ssh_key_id]/destroy/?client_id=[your_client_id]&api_key=[your_api_key]"
     },
     "Event"   => {
-      "find"      => "https://api.digitalocean.com/events/[event_id]/?client_id=[your_client_id]&api_key=[your_api_key]"
+      "find"      => "https://api.digitalocean.com/v1/events/[event_id]/?client_id=[your_client_id]&api_key=[your_api_key]"
     }
   }
 
