@@ -1,8 +1,8 @@
-# Digitalocean Rubygem 
+# Digitalocean Rubygem
 
 ![](https://raw.github.com/scottmotte/digitalocean/master/digitalocean-rubygem.jpg)
 
-### The easiest and most complete rubygem for [DigitalOcean](https://www.digitalocean.com). 
+### The easiest and most complete rubygem for [DigitalOcean](https://www.digitalocean.com).
 
 [![Build Status](https://travis-ci.org/scottmotte/digitalocean.svg?branch=master)](https://travis-ci.org/scottmotte/digitalocean)
 [![Gem Version](https://badge.fury.io/rb/digitalocean.svg)](http://badge.fury.io/rb/digitalocean)
@@ -13,7 +13,7 @@ Digitalocean.api_key    = "your_api_key"
 result = Digitalocean::Droplet.all
 # =>
 # <RecursiveOpenStruct status="OK", droplets=[
-#   {"id"=>12345, "name"=>"dev", "image_id"=>2676, "size_id"=>63, "region_id"=>3, "backups_active"=>false, "ip_address"=>"198.555.55.55", "private_ip_address"=>nil, "locked"=>false, "status"=>"active", "created_at"=>"2013-06-12T03:07:14Z"}, 
+#   {"id"=>12345, "name"=>"dev", "image_id"=>2676, "size_id"=>63, "region_id"=>3, "backups_active"=>false, "ip_address"=>"198.555.55.55", "private_ip_address"=>nil, "locked"=>false, "status"=>"active", "created_at"=>"2013-06-12T03:07:14Z"},
 #   {"id"=>234674, "name"=>"server2", "image_id"=>441012, "size_id"=>62, "region_id"=>1, "backups_active"=>false, "ip_address"=>"192.555.55.56", "private_ip_address"=>nil, "locked"=>false, "status"=>"active", "created_at"=>"2013-06-17T00:30:12Z"}
 # ]>
 #
@@ -121,7 +121,7 @@ Digitalocean::Event.find(id)
 
 ## Example
 
-There is a [digitalocean-rubygem-example](https://github.com/scottmotte/digitalocean-rubygem-example) to help jumpstart your development. 
+There is a [digitalocean-rubygem-example](https://github.com/scottmotte/digitalocean-rubygem-example) to help jumpstart your development.
 
 ## Contributing
 
