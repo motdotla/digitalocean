@@ -9,7 +9,7 @@ describe Digitalocean::Domain do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/domains?client_id=client_id_required&api_key=api_key_required" 
+      @url.should eq "https://api.digitalocean.com/v1/domains?client_id=client_id_required&api_key=api_key_required" 
     end
   end
 
@@ -21,7 +21,7 @@ describe Digitalocean::Domain do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}?client_id=client_id_required&api_key=api_key_required" 
+      @url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}?client_id=client_id_required&api_key=api_key_required" 
     end
   end
 
@@ -35,7 +35,7 @@ describe Digitalocean::Domain do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/domains/new?client_id=client_id_required&api_key=api_key_required&name=test_domain&ip_address=test_ip_address"
+      @url.should eq "https://api.digitalocean.com/v1/domains/new?client_id=client_id_required&api_key=api_key_required&name=test_domain&ip_address=test_ip_address"
     end
   end
 
@@ -47,7 +47,7 @@ describe Digitalocean::Domain do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/domains/test_domain_id/destroy?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/domains/test_domain_id/destroy?client_id=client_id_required&api_key=api_key_required"
     end
   end
 end
