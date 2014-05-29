@@ -16,7 +16,7 @@ describe Digitalocean do
     its(:client_id)    { should eq "client_id_required" }
     its(:api_key)      { should eq "api_key_required" }
 
-    it { digitalocean::VERSION.should eq "1.0.6" }
+    it { digitalocean::VERSION.should eq "1.1.0" }
   end
 
   describe "setting values" do
