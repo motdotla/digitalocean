@@ -9,7 +9,7 @@ describe Digitalocean::Size do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/sizes/?client_id=client_id_required&api_key=api_key_required" 
+      @url.should eq "https://api.digitalocean.com/v1/sizes/?client_id=client_id_required&api_key=api_key_required" 
     end
   end
 
@@ -21,7 +21,7 @@ describe Digitalocean::Size do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/sizes/#{size_id}?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/sizes/#{size_id}?client_id=client_id_required&api_key=api_key_required"
     end
   end
 

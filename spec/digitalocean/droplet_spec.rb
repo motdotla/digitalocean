@@ -9,7 +9,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -21,7 +21,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -34,7 +34,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/rename/?client_id=client_id_required&api_key=api_key_required&name=#{name}"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/rename/?client_id=client_id_required&api_key=api_key_required&name=#{name}"
     end
   end
   
@@ -47,7 +47,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/rebuild/?image_id=#{image_id}&client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/v1/droplets/#{droplet_id}/rebuild/?image_id=#{image_id}&client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -59,7 +59,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/reboot/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/reboot/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -71,7 +71,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/power_cycle/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/power_cycle/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -83,7 +83,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/shutdown/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/shutdown/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -95,7 +95,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/power_off/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/power_off/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -107,7 +107,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/power_on/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/power_on/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -120,7 +120,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/snapshot/?name=#{snapshot_name}&client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/snapshot/?name=#{snapshot_name}&client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -136,7 +136,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/new?client_id=client_id_required&api_key=api_key_required&name=#{name}&size_id=#{size_id}&image_id=#{image_id}&region_id=#{region_id}&ssh_key_ids=#{ssh_key_ids}&private_networking=private_networking&backups_enabled=backups_enabled"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/new?client_id=client_id_required&api_key=api_key_required&name=#{name}&size_id=#{size_id}&image_id=#{image_id}&region_id=#{region_id}&ssh_key_ids=#{ssh_key_ids}&private_networking=private_networking&backups_enabled=backups_enabled"
     end
   end
 
@@ -148,7 +148,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/destroy/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/destroy/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -161,7 +161,7 @@ describe Digitalocean::Droplet do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/droplets/#{droplet_id}/resize/?size_id=#{size_id}&client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/droplets/#{droplet_id}/resize/?size_id=#{size_id}&client_id=client_id_required&api_key=api_key_required"
     end
   end
 end

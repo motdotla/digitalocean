@@ -11,7 +11,7 @@ describe Digitalocean::Record do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -24,7 +24,7 @@ describe Digitalocean::Record do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/#{record_id}?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records/#{record_id}?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -39,7 +39,7 @@ describe Digitalocean::Record do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/new?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}"
+      @url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records/new?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}"
     end
   end
 
@@ -55,7 +55,7 @@ describe Digitalocean::Record do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/#{record_id}/edit?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}"
+      @url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records/#{record_id}/edit?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}"
     end
   end
 
@@ -68,7 +68,7 @@ describe Digitalocean::Record do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/#{record_id}/destroy?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records/#{record_id}/destroy?client_id=client_id_required&api_key=api_key_required"
     end
   end
 end

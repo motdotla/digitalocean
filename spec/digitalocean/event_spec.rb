@@ -11,7 +11,7 @@ describe Digitalocean::Event do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/events/#{event_id}/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/events/#{event_id}/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 end

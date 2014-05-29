@@ -9,7 +9,7 @@ describe Digitalocean::Image do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/images/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/images/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -21,7 +21,7 @@ describe Digitalocean::Image do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/images/?client_id=client_id_required&api_key=api_key_required&filter=my_images"
+      @url.should eq "https://api.digitalocean.com/v1/images/?client_id=client_id_required&api_key=api_key_required&filter=my_images"
     end
   end
 
@@ -33,7 +33,7 @@ describe Digitalocean::Image do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/images/#{id}/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/images/#{id}/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -45,7 +45,7 @@ describe Digitalocean::Image do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/images/#{id}/destroy/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/images/#{id}/destroy/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -59,7 +59,7 @@ describe Digitalocean::Image do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/images/#{id}/transfer/?client_id=client_id_required&api_key=api_key_required&region_id=44"
+      @url.should eq "https://api.digitalocean.com/v1/images/#{id}/transfer/?client_id=client_id_required&api_key=api_key_required&region_id=44"
     end
   end
 end

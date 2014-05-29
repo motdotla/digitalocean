@@ -9,7 +9,7 @@ describe Digitalocean::Region do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/regions/?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/regions/?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
@@ -21,7 +21,7 @@ describe Digitalocean::Region do
     end
 
     it do
-      @url.should eq "https://api.digitalocean.com/regions/#{region_id}?client_id=client_id_required&api_key=api_key_required"
+      @url.should eq "https://api.digitalocean.com/v1/regions/#{region_id}?client_id=client_id_required&api_key=api_key_required"
     end
   end
 
