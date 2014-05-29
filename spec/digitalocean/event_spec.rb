@@ -7,6 +7,6 @@ describe Digitalocean::Event do
     let(:event_id) { "1234" }
     let(:url) { event._find(event_id) }
 
-    it { url.should eq "https://api.digitalocean.com/events/#{event_id}/?client_id=client_id_required&api_key=api_key_required" }
+    it { url.should eq "https://api.digitalocean.com/v1/events/#{event_id}/?client_id=client_id_required&api_key=api_key_required" }
   end
 end
