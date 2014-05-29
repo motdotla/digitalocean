@@ -7,7 +7,7 @@ describe Digitalocean::Record do
     let(:domain_id) { "100" }
     let(:url) { record._all(domain_id) }
 
-    it { url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records?client_id=client_id_required&api_key=api_key_required" }
+    it { url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records?client_id=client_id_required&api_key=api_key_required" }
   end
 
   describe "._find" do
@@ -16,7 +16,7 @@ describe Digitalocean::Record do
 
     let(:url) { record._find(domain_id, record_id) }
 
-    it { url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/#{record_id}?client_id=client_id_required&api_key=api_key_required" }
+    it { url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records/#{record_id}?client_id=client_id_required&api_key=api_key_required" }
   end
 
   describe "._create" do
@@ -27,7 +27,7 @@ describe Digitalocean::Record do
 
     let(:url) { record._create(domain_id, attrs) }
 
-    it { url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/new?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}" }
+    it { url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records/new?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}" }
   end
 
   describe "._edit" do
@@ -39,7 +39,7 @@ describe Digitalocean::Record do
 
     let(:url) { record._edit(domain_id, record_id, attrs) }
 
-    it { url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/#{record_id}/edit?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}" }
+    it { url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records/#{record_id}/edit?client_id=client_id_required&api_key=api_key_required&record_type=#{record_type}&data=#{data}" }
   end
 
   describe "._destroy" do
@@ -48,6 +48,6 @@ describe Digitalocean::Record do
 
     let(:url) { record._destroy(domain_id, record_id) }
 
-    it { url.should eq "https://api.digitalocean.com/domains/#{domain_id}/records/#{record_id}/destroy?client_id=client_id_required&api_key=api_key_required" }
+    it { url.should eq "https://api.digitalocean.com/v1/domains/#{domain_id}/records/#{record_id}/destroy?client_id=client_id_required&api_key=api_key_required" }
   end
 end

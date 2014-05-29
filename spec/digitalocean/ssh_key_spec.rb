@@ -6,14 +6,14 @@ describe Digitalocean::SshKey do
   describe "._all" do
     let(:url) { ssh_key._all }
 
-    it { url.should eq "https://api.digitalocean.com/ssh_keys/?client_id=client_id_required&api_key=api_key_required"  }
+    it { url.should eq "https://api.digitalocean.com/v1/ssh_keys/?client_id=client_id_required&api_key=api_key_required"  }
   end
 
   describe "._find" do
     let(:ssh_key_id) { "test_key" }
     let(:url) { ssh_key._find(ssh_key_id) }
 
-    it { url.should eq "https://api.digitalocean.com/ssh_keys/test_key/?client_id=client_id_required&api_key=api_key_required"  }
+    it { url.should eq "https://api.digitalocean.com/v1/ssh_keys/test_key/?client_id=client_id_required&api_key=api_key_required"  }
   end
 
   describe "._edit" do
@@ -33,7 +33,7 @@ describe Digitalocean::SshKey do
 
     let(:url) { ssh_key._create(attrs) }
 
-    it { url.should eq "https://api.digitalocean.com/ssh_keys/new/?name=#{name}&ssh_pub_key=#{ssh_pub_key}&client_id=client_id_required&api_key=api_key_required"  }
+    it { url.should eq "https://api.digitalocean.com/v1/ssh_keys/new/?name=#{name}&ssh_pub_key=#{ssh_pub_key}&client_id=client_id_required&api_key=api_key_required"  }
   end
 
   describe "._destroy" do
