@@ -71,7 +71,7 @@ Digitalocean::Droplet.find("id_of_droplet")
 ### Create Droplet
 
 ```ruby
-Digitalocean::Droplet.create({:name => droplet_name, :size_id => size_id, :image_id => image_id, :region_id => region_id)
+Digitalocean::Droplet.create({:name => droplet_name, :size_id => size_id, :image_id => image_id, :region_id => region_id})
 ```
 ## Available Commands
 
