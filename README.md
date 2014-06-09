@@ -114,7 +114,7 @@ Digitalocean::Size.find(size_id)
 
 Digitalocean::SshKey.all
 Digitalocean::SshKey.find(id)
-Digitalocean::SshKey.create({name: name, ssh_pub_key: ssh_pub_key})
+Digitalocean::SshKey.create({name: name, ssh_pub_key: ssh_pub_key}) # Keep in mind you have to use CGI::escape for your ssh_pub_key
 
 Digitalocean::Event.find(id)
 ```
