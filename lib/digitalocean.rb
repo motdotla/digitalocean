@@ -192,7 +192,7 @@ module Digitalocean
   def setup_request!
     options = {
       :headers  =>  {'Accept' => "application/json"},
-      :ssl      =>  {:verify => false}
+      :ssl      =>  {:verify => true}
     }
 
     Digitalocean.request = ::Faraday::Connection.new(options) do |builder|
