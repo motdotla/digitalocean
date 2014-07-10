@@ -121,6 +121,18 @@ module Digitalocean
     "api_key_required"
   end
 
+  def verify_ssl=(verify_ssl)
+    @verify_ssl = verify_ssl
+    setup_request!
+
+    @verify_ssl
+  end
+
+  def verify_ssl
+    return @verify_ssl if @verify_ssl != nil
+    true
+  end
+
   def api_endpoint
     "https://api.digitalocean.com"
   end
@@ -192,7 +204,7 @@ module Digitalocean
   def setup_request!
     options = {
       :headers  =>  {'Accept' => "application/json"},
-      :ssl      =>  {:verify => true}
+      :ssl      =>  {:verify => verify_ssl}
     }
 
     Digitalocean.request = ::Faraday::Connection.new(options) do |builder|
