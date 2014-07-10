@@ -123,6 +123,12 @@ Digitalocean::Event.find(id)
 
 There is a [digitalocean-rubygem-example](https://github.com/scottmotte/digitalocean-rubygem-example) to help jumpstart your development.
 
+## Options
+
+```ruby
+Digitalocean.verify_ssl = false # optionally set this to false. defaults to true.
+```
+
 ## Contributing
 
 1. Fork it
