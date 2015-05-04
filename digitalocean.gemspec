@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Ruby bindings for the Digital Ocean API.}
   gem.homepage      = "http://github.com/scottmotte/digitalocean"
 
-  gem.add_dependency "faraday", "~> 0.8.9"
+  gem.add_dependency "faraday", "~> 0.9.1"
   gem.add_dependency "faraday_middleware", "~> 0.9.0"
   gem.add_dependency "recursive-open-struct", "~> 0.4.5"
 
