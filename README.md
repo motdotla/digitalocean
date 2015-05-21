@@ -4,7 +4,7 @@
 
 ### The easiest and most complete rubygem for [DigitalOcean](https://www.digitalocean.com).
 
-[![Build Status](https://travis-ci.org/scottmotte/digitalocean.svg?branch=master)](https://travis-ci.org/scottmotte/digitalocean)
+[![Build Status](https://travis-ci.org/motdotla/digitalocean.svg?branch=master)](https://travis-ci.org/motdotla/digitalocean)
 [![Gem Version](https://badge.fury.io/rb/digitalocean.svg)](http://badge.fury.io/rb/digitalocean)
 
 ```ruby
