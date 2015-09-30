@@ -4,6 +4,8 @@
 
 ### The easiest and most complete rubygem for [DigitalOcean](https://www.digitalocean.com).
 
+NOTICE: This is a DigitalOcean V1 API client. It supports everything the V1 API can do with a simple interface written in Ruby. Use [DropletKit](https://github.com/digitalocean/droplet_kit) for consuming the DigitalOcean V2 API.
+
 [![Build Status](https://travis-ci.org/motdotla/digitalocean.svg?branch=master)](https://travis-ci.org/motdotla/digitalocean)
 [![Gem Version](https://badge.fury.io/rb/digitalocean.svg)](http://badge.fury.io/rb/digitalocean)
 
