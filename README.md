@@ -1,5 +1,7 @@
 [![Donate](http://www.opensourcecitizen.org/badge)](http://www.opensourcecitizen.org/project?url=github.com/motdotla/digitalocean)
 
+If you found this library useful, donate some CPU cycles to this project by clicking above. Thank you! 😇
+
 # Digitalocean Rubygem
 
 ![](https://raw.github.com/scottmotte/digitalocean/master/digitalocean-rubygem.jpg)
